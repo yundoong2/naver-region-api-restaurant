@@ -15,7 +15,6 @@ public class SearchLocalResponse {
     private int total;
     private int start;
     private int display;
-    private String category;
     private List<SearchLocalItem> items;
 
 
@@ -27,6 +26,7 @@ public class SearchLocalResponse {
     public static class SearchLocalItem {
         private String title;
         private String link;
+        private String category;
         private String description;
         private String telephone;
         private String address;
