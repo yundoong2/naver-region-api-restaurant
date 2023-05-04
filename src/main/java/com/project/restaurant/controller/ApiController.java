@@ -14,6 +14,7 @@ import java.util.List;
  * ApiController
  * <p>
  * 네이버 지역, 이미지 API를 활용한 맛집 검색 컨트롤러
+ *
  * @author cyh68
  * @since 2023-05-03
  **/
@@ -28,6 +29,7 @@ public class ApiController {
 
     /**
      * 쿼리를 입력 받아 맛집 검색 수행 메소드
+     *
      * @param query {@link String}
      * @return WishListDto {@link WishListDto}
      */
@@ -39,6 +41,7 @@ public class ApiController {
 
     /**
      * 검색한 맛집을 WishList에 추가하는 메소드
+     *
      * @param wishListDto {@link WishListDto}
      * @return WishListDto {@link WishListDto}
      */
@@ -49,9 +52,32 @@ public class ApiController {
         return wishListService.add(wishListDto);
     }
 
-
+    /**
+     * WishList에 등록한 맛집 리스트 조회
+     *
+     * @return List {@link List<WishListDto>}
+     */
     @GetMapping("/all")
     public List<WishListDto> findAll() {
         return wishListService.findAll();
+    }
+
+    /**
+     * WishList에서 특정 맛집 삭제
+     * @param index {@link Integer}
+     */
+    @DeleteMapping("/{index}")
+    public void delete(@PathVariable("index") Integer index) {
+        wishListService.delete(index);
+    }
+
+    /**
+     * WishList에서 특정 맛집 방문 횟수 추가
+     * @param index
+     * @return WishListDto {@link WishListDto}
+     */
+    @PostMapping("/{index}")
+    public WishListDto addVisit(@PathVariable("index") Integer index) {
+        return wishListService.addVisit(index);
     }
 }

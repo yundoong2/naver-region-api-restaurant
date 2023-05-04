@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -70,6 +71,23 @@ public class WishListService {
         return wishListRepository.findAll()
                 .stream().map(result -> entityToDto(result))
                 .collect(Collectors.toList());
+    }
+
+    public void delete(Integer index) {
+        wishListRepository.deleteById(index);
+    }
+
+    public WishListDto addVisit(Integer index) {
+        Optional<WishListEntity> wishItem = wishListRepository.findById(index);
+
+        if (wishItem.isPresent()) {
+            WishListEntity item = wishItem.get();
+            item.setVisit(true);
+            item.setVisitCount(item.getVisitCount() + 1);
+
+            return entityToDto(item);
+        }
+        return null;
     }
 
     private WishListEntity dtoToEntity(WishListDto wishListDto) {
