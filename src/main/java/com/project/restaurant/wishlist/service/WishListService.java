@@ -45,7 +45,7 @@ public class WishListService {
 
                 //결과 리턴
                 WishListDto result = new WishListDto();
-                result.setTitle(localItem.getTitle());
+                result.setTitle(localItem.getTitle().replaceAll("<[^>]*>", ""));
                 result.setCategory(localItem.getCategory());
                 result.setAddress(localItem.getAddress());
                 result.setRoadAddress(localItem.getRoadAddress());
