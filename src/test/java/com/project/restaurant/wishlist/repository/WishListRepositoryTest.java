@@ -1,7 +1,6 @@
 package com.project.restaurant.wishlist.repository;
 
 import com.project.restaurant.wishlist.entity.WishListEntity;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,7 +47,7 @@ public class WishListRepositoryTest {
 
         assertThat(expected.getIndex()).isEqualTo(1);
         assertThat(expected.getTitle()).isEqualTo("update title");
-        assertThat(wishListRepository.listAll().size()).isEqualTo(1);
+        assertThat(wishListRepository.findAll().size()).isEqualTo(1);
     }
 
     @Test
@@ -69,7 +68,7 @@ public class WishListRepositoryTest {
 
         wishListRepository.deleteById(1);
 
-        int count = wishListRepository.listAll().size();
+        int count = wishListRepository.findAll().size();
 
         assertThat(count).isEqualTo(0);
     }
@@ -82,7 +81,7 @@ public class WishListRepositoryTest {
         var wishListEntity2 = create();
         wishListRepository.save(wishListEntity2);
 
-        int count = wishListRepository.listAll().size();
+        int count = wishListRepository.findAll().size();
 
         assertThat(count).isEqualTo(2);
     }

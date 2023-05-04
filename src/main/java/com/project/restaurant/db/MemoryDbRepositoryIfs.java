@@ -9,5 +9,5 @@ public interface MemoryDbRepositoryIfs<T> {
     T save(T entity);
 
     void deleteById(int index);
-    List<T> listAll();
+    List<T> findAll();
 }
